@@ -58,13 +58,13 @@ gsrru xuprk
 </div>
 </div>
 <div class="controls">
-<button class="primary" onclick="translate(true)">encode</button>
-<button onclick="translate(false)">decode</button>
+<button class="primary" onclick="dfflTranslate(true)">encode</button>
+<button onclick="dfflTranslate(false)">decode</button>
 <button class="ghost" onclick="swap()">swap</button>
 <button class="ghost" onclick="clearAll()">clear</button>
 <button class="ghost" onclick="copyResult()">copy</button>
 <button class="ghost" onclick="share()">share link</button>
-<label class="toggle"><input id="live" type="checkbox" onchange="if(this.checked)translate(true)"> live encode</label>
+<label class="toggle"><input id="live" type="checkbox" onchange="if(this.checked)dfflTranslate(true)"> live encode</label>
 </div>
 <div class="status" id="status" role="status"></div>
 </section>

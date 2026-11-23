@@ -12,10 +12,10 @@ const status=document.getElementById('status');
 const live=document.getElementById('live');
 function say(t){status.textContent=t;clearTimeout(say.t);say.t=setTimeout(()=>status.textContent='',2200);}
 function mapText(s,map){return String(s).replace(/[a-z]/gi,c=>{const l=c.toLowerCase(),o=map[l]||l;return c===c.toUpperCase()?o.toUpperCase():o;});}
-function translate(encode){const s=source.value;if(!s){output.value='';return;}output.value=mapText(s,encode?ENC:DEC);}
-function swap(){source.value=output.value;output.value='';translate(live.checked);source.focus();}
+function dfflTranslate(encode){const s=source.value;if(!s){output.value='';return;}output.value=mapText(s,encode?ENC:DEC);}
+function swap(){source.value=output.value;output.value='';dfflTranslate(live.checked);source.focus();}
 function clearAll(){source.value='';output.value='';history.replaceState(null,'',location.pathname);source.focus();}
-function loadSample(){source.value='dffl makes normal text look cursed';translate(true);source.focus();}
+function loadSample(){source.value='dffl makes normal text look cursed';dfflTranslate(true);source.focus();}
 function shuffled(s){const a=s.split('');for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t;}return a.join('');}
 function toy(kind){const s=source.value;if(!s){say('type something first');return;}let o=s;
 if(kind==='uwu')o=s.replace(/(?:th|r|l)/gi,m=>m.toLowerCase()==='th'?'d':'w').replace(/([!?.])$/,' $1 uwu');
@@ -35,6 +35,6 @@ say(kind+' applied');}
 async function copyText(t,msg){try{await navigator.clipboard.writeText(t);say(msg);}catch(e){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');say(msg);}catch(x){say('copy failed');}a.remove();}}
 function copyResult(){if(!output.value){say('nothing to copy');return;}copyText(output.value,'copied');}
 function share(){const t=source.value||output.value;if(!t){say('nothing to share');return;}const u=new URL(location.href);u.hash='text='+encodeURIComponent(t);history.replaceState(null,'',u);copyText(u.toString(),'share link copied');}
-source.addEventListener('input',()=>{if(live.checked)translate(true);});
+source.addEventListener('input',()=>{if(live.checked)dfflTranslate(true);});
 const params=new URLSearchParams(location.hash.replace(/^#/,''));
-if(params.has('text')){source.value=params.get('text')||'';translate(true);}
+if(params.has('text')){source.value=params.get('text')||'';dfflTranslate(true);}
