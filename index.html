@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#07111c">
+<meta name="description" content="Encode and decode text in the dflksjhgqwertzuiopmbvcxay cipher. Free, browser-only, no login.">
+<title>DFFL Translator</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+<a class="brand" href="#top"><span class="mark">d</span><span>DFFL</span></a>
+<nav>
+<a href="#translator">translator</a>
+<a href="#toybox">toybox</a>
+<a href="#about">about</a>
+</nav>
+<a class="source" href="https://github.com/olda9991/dffl" rel="noreferrer">source</a>
+</header>
+
+<main id="top">
+<section class="hero">
+<div class="hero-copy">
+<span class="kicker">silly text utilities</span>
+<h1>DFFL<br><span>translator</span></h1>
+<p class="lede">Turn normal words into <code>dflksjhgqwertzuiopmbvcxay</code> noise, then turn them back. Runs entirely in your browser.</p>
+<div class="hero-actions">
+<button class="primary" onclick="document.getElementById('source').focus()">start translating</button>
+<button class="ghost" onclick="loadSample()">try a sample</button>
+</div>
+</div>
+<div class="hero-card" aria-hidden="true">
+<div class="terminal-head"><i></i><i></i><i></i><span>dffl://decode</span></div>
+<pre>hello world
+gsrru xuprk
+<span class="cursor">▋</span></pre>
+</div>
+</section>
+
+<section class="card" id="translator">
+<div class="section-head">
+<div>
+<span class="kicker">01 / translator</span>
+<h2>Say it in DFFL</h2>
+</div>
+<span class="badge">browser only</span>
+</div>
+<div class="editor-grid">
+<div class="field">
+<label for="source">plain text</label>
+<textarea id="source" spellcheck="false" placeholder="type something..."></textarea>
+</div>
+<div class="field">
+<label for="output">translated</label>
+<textarea id="output" readonly spellcheck="false" placeholder="result shows here"></textarea>
+</div>
+</div>
+<div class="controls">
+<button class="primary" onclick="translate(true)">encode</button>
+<button onclick="translate(false)">decode</button>
+<button class="ghost" onclick="swap()">swap</button>
+<button class="ghost" onclick="clearAll()">clear</button>
+<button class="ghost" onclick="copyResult()">copy</button>
+<button class="ghost" onclick="share()">share link</button>
+<label class="toggle"><input id="live" type="checkbox" onchange="if(this.checked)translate(true)"> live encode</label>
+</div>
+<div class="status" id="status" role="status"></div>
+</section>
+
+<section class="card" id="toybox">
+<div class="section-head">
+<div>
+<span class="kicker">02 / toybox</span>
+<h2>Mangle anything</h2>
+</div>
+<span class="muted">uses the text above</span>
+</div>
+<div class="toy-grid">
+<button onclick="toy('uwu')">uwu</button>
+<button onclick="toy('leet')">leet</button>
+<button onclick="toy('rot13')">rot13</button>
+<button onclick="toy('reverse')">reverse</button>
+<button onclick="toy('caps')">spongebob caps</button>
+<button onclick="toy('morse')">morse enc</button>
+<button onclick="toy('unmorse')">morse dec</button>
+<button onclick="toy('base64')">base64 enc</button>
+<button onclick="toy('unbase64')">base64 dec</button>
+<button onclick="toy('glitch')">glitch</button>
+<button onclick="toy('scream')">scream</button>
+<button onclick="toy('shuffle')">shuffle chars</button>
+</div>
+</section>
+
+<section class="card about" id="about">
+<div class="section-head">
+<div>
+<span class="kicker">03 / about</span>
+<h2>How it works</h2>
+</div>
+</div>
+<p>Each letter is swapped with a fixed partner from the DFFL alphabet. Uppercase letters stay uppercase, spaces and punctuation stay exactly where they are, and decoding uses the inverse map.</p>
+<div class="alphabet"><span>a b c d e f g h i j k l m</span><b>↕</b><span>d f l k s j h g q w e r t</span></div>
+<div class="alphabet"><span>n o p q r s t u v w x y z</span><b>↕</b><span>z u i o p m b v c x a y</span></div>
+<p class="muted">No account, no tracking, no server-side text storage. Share links keep the text in the URL fragment.</p>
+</section>
+</main>
+
+<footer>
+<span>DFFL Translator</span>
+<a href="https://github.com/olda9991/dffl" rel="noreferrer">GitHub Pages build</a>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
