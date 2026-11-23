@@ -28,6 +28,8 @@ button.primary{background:linear-gradient(135deg,#2479c4,#3da5ff);border-color:#
 button.primary:hover{color:#02111f;filter:brightness(1.08)}
 button.ghost{background:#0a1622;border-color:var(--line);color:var(--muted)}
 button.ghost:hover{color:var(--text)}
+button.danger{border-color:#ff5c7a66;background:#2a0f1a;color:#ff9db0}
+button.danger:hover{background:#431528;border-color:#ff5c7a;color:#fff}
 .hero-card{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#06101a;box-shadow:var(--shadow)}
 .terminal-head{display:flex;align-items:center;gap:7px;padding:10px 13px;border-bottom:1px solid var(--line);background:#0b1a28;color:#5f7b92;font:12px ui-monospace,monospace}
 .terminal-head i{width:9px;height:9px;border-radius:50%;background:#23425d}
@@ -59,4 +61,9 @@ input[type=checkbox]{accent-color:var(--accent);width:17px;height:17px}
 .alphabet span:first-child{min-width:210px}
 footer{display:flex;justify-content:space-between;gap:16px;color:#5f7b92;font-size:12px;padding:16px 0 30px}
 footer a:hover{color:var(--accent)}
+.trap{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:20px;background:#02060be8;backdrop-filter:blur(7px)}
+.trap[hidden]{display:none}
+.trap-card{width:min(480px,100%);padding:26px;border:1px solid #ff5c7a55;border-radius:18px;background:linear-gradient(160deg,#1a0d16,#0a1018);box-shadow:0 25px 80px #000b}
+.trap-card h2{color:#ff9db0}
+.trap-card p{max-width:420px}
 @media(max-width:760px){main{padding-top:32px}.hero{grid-template-columns:1fr;gap:28px;min-height:0}.hero-card{display:none}.editor-grid{grid-template-columns:1fr}.toggle{margin-left:0}.topbar{gap:12px}nav{display:none}.source{margin-left:auto}.card{padding:18px}}

@@ -9,14 +9,15 @@ for(const k in MORSE)MORSE_REV[MORSE[k]]=k;
 const ART={
 femboy:'(◕‿◕) つ♡⊂\n  /\\_/\\\n ( o.o )\n  > ^ <\n femboy mode: active',
 cat:' /\\_/\\\n( o.o )\n > ^ <\n nya~ :3\n certified cat',
-matthew:'  ______\n / Xx  \\\n|Matthew|\n \\__X__/\n XxMatthewMxX',
-cube:'[Cube98]\n[ 98  ]\n[ USER ]\n #Cube98User'
+matthew:'  ______\n / Xx  \\\n|Matthew|\n \\__X__/\n Steam: XxMatthewMxX #Cube98User',
+cube:'[Cube98]\n[ USER ]\n[ STEAM ]\n XxMatthewMxX #Cube98User'
 };
 const source=document.getElementById('source');
 const output=document.getElementById('output');
 const status=document.getElementById('status');
 const live=document.getElementById('live');
 let lastSource='';
+let wreckCount=0;
 function say(t){status.textContent=t;clearTimeout(say.t);say.t=setTimeout(()=>status.textContent='',2200);}
 function mapText(s,map){return String(s).replace(/[a-z]/gi,c=>{const l=c.toLowerCase(),o=map[l]||l;return c===c.toUpperCase()?o.toUpperCase():o;});}
 function dfflTranslate(encode){const s=encode?source.value:((output.value&&source.value===lastSource)?output.value:source.value);if(!s){output.value='';return;}output.value=mapText(s,encode?ENC:DEC);lastSource=source.value;}
@@ -24,12 +25,12 @@ function swap(){source.value=output.value;output.value='';lastSource='';source.f
 function clearAll(){source.value='';output.value='';lastSource='';history.replaceState(null,'',location.pathname);source.focus();}
 function loadSample(){source.value='dffl makes normal text look cursed';dfflTranslate(true);source.focus();}
 function shuffled(s){const a=s.split('');for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t;}return a.join('');}
-const TOY_LABELS={femboy:'femboy mode',cat:'cat mode',matthew:'matthew mode',cube:'cube mode',femboyart:'femboy art',catart:'cat art',cubeart:'cube art',vapor:'vaporwave',echo:'echo',binary:'binary',sparkle:'sparkle',wrecked:'wrecked'};
+const TOY_LABELS={femboy:'femboy mode',cat:'cat mode',matthew:'Steam name mode',cube:'Cube98User mode',femboyart:'femboy art',catart:'cat art',cubeart:'Steam card',vapor:'vaporwave',echo:'echo',binary:'binary',sparkle:'sparkle',wrecked:'wrecked'};
 function toy(kind){const s=source.value;const art=kind.endsWith('art');if(!s&&!art){say('type something first');return;}let o=s;
 if(kind==='femboy')o=s.replace(/(?:th|r|l)/gi,m=>m.toLowerCase()==='th'?'d':'w').replace(/\b(is|are|am)\b/gi,m=>m+', like').replace(/\s*~\s*$/,'')+' ~ (◕‿◕)';
 else if(kind==='cat')o=s.replace(/(?:th|r|l)/gi,m=>m.toLowerCase()==='th'?'d':'w').replace(/\s*~\s*$/,'')+' nya~ :3';
-else if(kind==='matthew')o='XxMatthewMxX: '+s.trim().split(/\s+/).map((w,i)=>i%2?w.toLowerCase():w.toUpperCase()).join(' ')+' [cube98]';
-else if(kind==='cube')o='#Cube98User: '+s.trim().split(/\s+/).map(w=>'['+w+']').join(' ');
+else if(kind==='matthew')o='Steam: XxMatthewMxX [#Cube98User]: '+s.trim().split(/\s+/).map((w,i)=>i%2?w.toLowerCase():w.toUpperCase()).join(' ');
+else if(kind==='cube')o='Steam: #Cube98User (XxMatthewMxX): '+s.trim().split(/\s+/).map(w=>'['+w+']').join(' ');
 else if(kind==='femboyart')o=ART.femboy;
 else if(kind==='catart')o=ART.cat;
 else if(kind==='cubeart')o=ART.cube;
@@ -49,13 +50,15 @@ else if(kind==='vapor')o=s.replace(/[!-~]/g,c=>String.fromCharCode(c.charCodeAt(
 else if(kind==='echo')o=s.trim().split(/\s+/).map(w=>w+' '+w).join(' ');
 else if(kind==='binary')o=s.split('').map(c=>c.charCodeAt(0).toString(2).padStart(8,'0')).join(' ');
 else if(kind==='sparkle')o=s.trim().split(/\s+/).map(w=>'*'+w+'*').join(' ');
-else if(kind==='wrecked')o=shuffled(s.split('').map(c=>/\s/.test(c)?c:(Math.random()<.35?DFFL[Math.floor(Math.random()*26)]:c.toUpperCase())).join('')).split('').reverse().join('')+' [wrecked]';
+else if(kind==='wrecked'){wreckCount++;const mangled=shuffled(s.split('').map(c=>/\s/.test(c)?c:(Math.random()<.35?DFFL[Math.floor(Math.random()*26)]:c.toUpperCase())).join('')).split('').reverse().join('');o=wreckCount>=3?'you were getting wrecked -> SYSTEM OVERLOAD: text flatlined [RIP]':'you were getting wrecked: '+mangled+' [wrecked '+wreckCount+']';}
 output.value=o;
 lastSource='';
 say((TOY_LABELS[kind]||kind)+' applied');}
 async function copyText(t,msg){try{await navigator.clipboard.writeText(t);say(msg);}catch(e){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');say(msg);}catch(x){say('copy failed');}a.remove();}}
 function copyResult(){if(!output.value){say('nothing to copy');return;}copyText(output.value,'copied');}
 function share(){const t=source.value||output.value;if(!t){say('nothing to share');return;}const u=new URL(location.href);u.hash='text='+encodeURIComponent(t);history.replaceState(null,'',u);copyText(u.toString(),'share link copied');}
+const RICKROLL='https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+function trap(){const el=document.getElementById('trap');if(!el)return;try{sessionStorage.setItem('dffl_trap_triggered',String(Date.now()));}catch(e){}console.warn('toybox trap triggered');const msg=document.getElementById('trapMsg');if(msg)msg.textContent="You thought you'd get away with that? Nope. I'm logging this and I'm not forgiving you. Get off my site.";el.hidden=false;let n=3;const c=document.getElementById('trapCount');if(c)c.textContent=n;const t=setInterval(()=>{n--;if(c)c.textContent=n;if(n<=0){clearInterval(t);location.replace(RICKROLL);}},1000);}
 source.addEventListener('input',()=>{if(live.checked)dfflTranslate(true);else{output.value='';lastSource='';}});
 const params=new URLSearchParams(location.hash.replace(/^#/,''));
 if(params.has('text')){source.value=params.get('text')||'';dfflTranslate(true);}
