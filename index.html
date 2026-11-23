@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#07111c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
 <meta name="description" content="Encode and decode text in the dflksjhgqwertzuiopmbvcxay cipher. Free, browser-only, no login.">
 <title>DFFL Translator</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -16,6 +19,7 @@
 <a href="#translator">translator</a>
 <a href="#toybox">toybox</a>
 <a href="#about">about</a>
+<a href="panel/">panel</a>
 </nav>
 <a class="source" href="https://github.com/olda9991/dffl" rel="noreferrer">source</a>
 <img class="visits" src="https://visitor-badge.laobi.icu/badge?page_id=olda9991.dfflvisits&left_text=visits" alt="site visits" title="site visits">
@@ -30,6 +34,7 @@
 <div class="hero-actions">
 <button class="primary" onclick="document.getElementById('source').focus()">start translating</button>
 <button class="ghost" onclick="loadSample()">try a sample</button>
+<button class="ghost" id="installBtn" hidden>install app</button>
 </div>
 </div>
 <div class="hero-card" aria-hidden="true">

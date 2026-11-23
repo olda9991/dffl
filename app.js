@@ -40,3 +40,9 @@ function share(){const t=source.value||output.value;if(!t){say('nothing to share
 source.addEventListener('input',()=>{if(live.checked)dfflTranslate(true);else{output.value='';lastSource='';}});
 const params=new URLSearchParams(location.hash.replace(/^#/,''));
 if(params.has('text')){source.value=params.get('text')||'';dfflTranslate(true);}
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+let installPrompt=null;
+const installBtn=document.getElementById('installBtn');
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;if(installBtn)installBtn.hidden=false;});
+if(installBtn)installBtn.addEventListener('click',async()=>{if(!installPrompt)return;installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;installBtn.hidden=true;});
+window.addEventListener('appinstalled',()=>{if(installBtn)installBtn.hidden=true;});

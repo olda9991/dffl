@@ -1,0 +1,3 @@
+const PASS_HASH='e76684407fd1113a883cc426e8829978f22ed4e087dfe64c2f22ca1f69e8b548';
+async function sha256(s){const b=new TextEncoder().encode(s);const d=await crypto.subtle.digest('SHA-256',b);return Array.from(new Uint8Array(d)).map(x=>x.toString(16).padStart(2,'0')).join('');}
+async function unlock(){const msg=document.getElementById('msg');const v=document.getElementById('pass').value;if(!v){msg.textContent='enter the password';return;}try{const h=await sha256(v);if(h===PASS_HASH){document.getElementById('gate').hidden=true;document.getElementById('unlocked').hidden=false;document.getElementById('openPanel').focus();msg.textContent='';}else{msg.textContent='wrong password';}}catch(e){msg.textContent='unlock failed on this browser';}}
