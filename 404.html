@@ -6,13 +6,29 @@
 <title>Not found - DFFL Translator</title>
 <link rel="icon" href="/dffl/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/dffl/styles.css">
+<link rel="stylesheet" href="/dffl/gate.css">
 </head>
-<body>
+<body class="locked">
+<div id="siteGate" class="site-gate">
+<div class="gate-card">
+<div class="gate-mark">d</div>
+<h1>DFFL locked</h1>
+<p>Enter the site password to continue.</p>
+<label for="sitePass">site password</label>
+<div class="gate-row">
+<input id="sitePass" type="password" autocomplete="current-password" placeholder="password" onkeydown="if(event.key==='Enter')unlockSite()">
+<button onclick="unlockSite()">unlock</button>
+</div>
+<div id="siteMsg" class="gate-msg" role="status"></div>
+<div class="gate-foot">front-end gate · real panel has its own auth</div>
+</div>
+</div>
 <main style="text-align:center;padding-top:110px">
 <span class="kicker">404</span>
 <h1 style="font-size:72px">lost in<br><span>DFFL</span></h1>
 <p class="lede" style="margin:0 auto 24px">That page got translated one too many times.</p>
 <a class="source" href="/dffl/">back to translator</a>
 </main>
+<script src="/dffl/gate.js"></script>
 </body>
 </html>
