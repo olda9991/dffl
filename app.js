@@ -62,7 +62,7 @@ function trap(){const el=document.getElementById('trap');if(!el)return;try{sessi
 source.addEventListener('input',()=>{if(live.checked)dfflTranslate(true);else{output.value='';lastSource='';}});
 const params=new URLSearchParams(location.hash.replace(/^#/,''));
 if(params.has('text')){source.value=params.get('text')||'';dfflTranslate(true);}
-if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js?v=9').catch(()=>{});
 let installPrompt=null;
 const installBtn=document.getElementById('installBtn');
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;if(installBtn)installBtn.hidden=false;});

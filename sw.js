@@ -1,5 +1,5 @@
-const CACHE='dffl-v8';
-const FILES=['./','./index.html','./styles.css','./app.js','./favicon.svg','./manifest.webmanifest','./panel/','./panel/index.html','./panel/panel.css','./panel/panel.js'];
+const CACHE='dffl-v9';
+const FILES=['./','./index.html','./styles.css?v=9','./app.js?v=9','./favicon.svg?v=9','./manifest.webmanifest','./panel/','./panel/index.html','./panel/panel.css','./panel/panel.js'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting()));});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
 self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;const u=new URL(e.request.url);if(u.origin!==location.origin)return;e.respondWith(fetch(e.request).then(r=>{const copy=r.clone();caches.open(CACHE).then(c=>c.put(e.request,copy));return r;}).catch(()=>caches.match(e.request).then(r=>r||caches.match('./index.html'))));});
