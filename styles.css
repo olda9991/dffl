@@ -11,6 +11,7 @@ nav{display:flex;gap:18px;margin-left:auto;color:var(--muted);font-size:14px}
 nav a:hover{color:var(--accent)}
 .source{border:1px solid var(--line);border-radius:9px;padding:7px 12px;font-size:13px;color:#a9d8ff}
 .source:hover{border-color:var(--accent)}
+.visits{height:20px;width:auto;display:block;border-radius:4px;opacity:.9}
 main{width:min(1080px,calc(100% - 32px));margin:0 auto;padding:60px 0 34px}
 .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;min-height:400px;margin-bottom:28px}
 .kicker{display:block;color:var(--accent);font-size:11px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px}
