@@ -6,34 +6,30 @@
 <meta name="theme-color" content="#07111c">
 <title>Bot Panel - DFFL</title>
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../gate.css">
 <link rel="stylesheet" href="panel.css">
 </head>
-<body class="locked">
-<div id="siteGate" class="site-gate">
-<div class="gate-card">
-<div class="gate-mark">d</div>
-<h1>DFFL locked</h1>
-<p>Enter the site password to continue.</p>
-<label for="sitePass">site password</label>
-<div class="gate-row">
-<input id="sitePass" type="password" autocomplete="current-password" placeholder="password" onkeydown="if(event.key==='Enter')unlockSite()">
-<button onclick="unlockSite()">unlock</button>
-</div>
-<div id="siteMsg" class="gate-msg" role="status"></div>
-<div class="gate-foot">front-end gate · real panel has its own auth</div>
-</div>
-</div>
+<body>
 <main class="shell">
 <a class="back" href="../">← back to translator</a>
 <section class="card">
 <span class="kicker">restricted</span>
 <h1>Bot panel</h1>
-<p class="sub">The real panel has its own password prompt after this link opens.</p>
-<a class="open" href="https://luxurious-bonded-thinly.ngrok-free.dev/panel" rel="noreferrer" target="_blank">open bot panel ↗</a>
-<small>Use the credentials from your local bot-panel env file.</small>
+<p class="sub">This page unlocks the link to the real panel. The panel itself has its own password prompt.</p>
+<div id="gate">
+<label for="pass">panel password</label>
+<div class="row">
+<input id="pass" type="password" autocomplete="current-password" placeholder="enter password" onkeydown="if(event.key==='Enter')unlock()">
+<button onclick="unlock()">unlock</button>
+</div>
+<div class="msg" id="msg" role="status"></div>
+</div>
+<div id="unlocked" hidden>
+<div class="ok">unlocked</div>
+<a class="open" id="openPanel" href="https://luxurious-bonded-thinly.ngrok-free.dev/panel" rel="noreferrer" target="_blank">open bot panel ↗</a>
+<small>The panel will ask for its own credentials. GitHub only hosts this launcher.</small>
+</div>
 </section>
 </main>
-<script src="../gate.js"></script>
+<script src="panel.js"></script>
 </body>
 </html>

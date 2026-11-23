@@ -11,23 +11,8 @@
 <title>DFFL Translator</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="gate.css">
 </head>
-<body class="locked">
-<div id="siteGate" class="site-gate">
-<div class="gate-card">
-<div class="gate-mark">d</div>
-<h1>DFFL locked</h1>
-<p>Enter the site password to continue.</p>
-<label for="sitePass">site password</label>
-<div class="gate-row">
-<input id="sitePass" type="password" autocomplete="current-password" placeholder="password" onkeydown="if(event.key==='Enter')unlockSite()">
-<button onclick="unlockSite()">unlock</button>
-</div>
-<div id="siteMsg" class="gate-msg" role="status"></div>
-<div class="gate-foot">front-end gate · real panel has its own auth</div>
-</div>
-</div>
+<body>
 <header class="topbar">
 <a class="brand" href="#top"><span class="mark">d</span><span>DFFL</span></a>
 <nav>
@@ -132,7 +117,6 @@ gsrru xuprk
 <span>DFFL Translator</span>
 <a href="https://github.com/olda9991/dffl" rel="noreferrer">GitHub Pages build</a>
 </footer>
-<script src="gate.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
