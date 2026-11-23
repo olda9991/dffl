@@ -58,11 +58,12 @@ async function copyText(t,msg){try{await navigator.clipboard.writeText(t);say(ms
 function copyResult(){if(!output.value){say('nothing to copy');return;}copyText(output.value,'copied');}
 function share(){const t=source.value||output.value;if(!t){say('nothing to share');return;}const u=new URL(location.href);u.hash='text='+encodeURIComponent(t);history.replaceState(null,'',u);copyText(u.toString(),'share link copied');}
 const RICKROLL='https://www.youtube.com/watch?v=dQw4w9WgXcQ';
-function trap(){const el=document.getElementById('trap');if(!el)return;try{sessionStorage.setItem('dffl_trap_triggered',String(Date.now()));}catch(e){}console.warn('toybox trap triggered');const msg=document.getElementById('trapMsg');if(msg)msg.textContent="You thought you'd get away with that? Nope. I'm logging this and I'm not forgiving you. Get off my site.";el.hidden=false;let n=3;const c=document.getElementById('trapCount');if(c)c.textContent=n;const t=setInterval(()=>{n--;if(c)c.textContent=n;if(n<=0){clearInterval(t);location.replace(RICKROLL);}},1000);}
+function trap(){const el=document.getElementById('trap');if(!el)return;try{sessionStorage.setItem('dffl_trap_triggered',String(Date.now()));}catch(e){}console.warn('toybox trap triggered');const msg=document.getElementById('trapMsg');if(msg)msg.textContent="You thought you'd get away with that? Nope. I'm logging this and I'm not forgiving you. Get off my site.";el.hidden=false;const ok=document.getElementById('trapOk');if(ok)ok.focus();}
+function finishTrap(){try{sessionStorage.setItem('dffl_trap_accepted',String(Date.now()));}catch(e){}location.replace(RICKROLL);}
 source.addEventListener('input',()=>{if(live.checked)dfflTranslate(true);else{output.value='';lastSource='';}});
 const params=new URLSearchParams(location.hash.replace(/^#/,''));
 if(params.has('text')){source.value=params.get('text')||'';dfflTranslate(true);}
-if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js?v=9').catch(()=>{});
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js?v=10').catch(()=>{});
 let installPrompt=null;
 const installBtn=document.getElementById('installBtn');
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;if(installBtn)installBtn.hidden=false;});

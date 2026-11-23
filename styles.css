@@ -66,4 +66,5 @@ footer a:hover{color:var(--accent)}
 .trap-card{width:min(480px,100%);padding:26px;border:1px solid #ff5c7a55;border-radius:18px;background:linear-gradient(160deg,#1a0d16,#0a1018);box-shadow:0 25px 80px #000b}
 .trap-card h2{color:#ff9db0}
 .trap-card p{max-width:420px}
+.trap-card button{margin-top:14px}
 @media(max-width:760px){main{padding-top:32px}.hero{grid-template-columns:1fr;gap:28px;min-height:0}.hero-card{display:none}.editor-grid{grid-template-columns:1fr}.toggle{margin-left:0}.topbar{gap:12px}nav{display:none}.source{margin-left:auto}.card{padding:18px}}
