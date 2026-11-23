@@ -24,7 +24,7 @@ function swap(){source.value=output.value;output.value='';lastSource='';source.f
 function clearAll(){source.value='';output.value='';lastSource='';history.replaceState(null,'',location.pathname);source.focus();}
 function loadSample(){source.value='dffl makes normal text look cursed';dfflTranslate(true);source.focus();}
 function shuffled(s){const a=s.split('');for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t;}return a.join('');}
-const TOY_LABELS={femboy:'femboy mode',cat:'cat mode',matthew:'matthew mode',cube:'cube mode',femboyart:'femboy art',catart:'cat art',cubeart:'cube art',vapor:'vaporwave',echo:'echo',binary:'binary',sparkle:'sparkle'};
+const TOY_LABELS={femboy:'femboy mode',cat:'cat mode',matthew:'matthew mode',cube:'cube mode',femboyart:'femboy art',catart:'cat art',cubeart:'cube art',vapor:'vaporwave',echo:'echo',binary:'binary',sparkle:'sparkle',wrecked:'wrecked'};
 function toy(kind){const s=source.value;const art=kind.endsWith('art');if(!s&&!art){say('type something first');return;}let o=s;
 if(kind==='femboy')o=s.replace(/(?:th|r|l)/gi,m=>m.toLowerCase()==='th'?'d':'w').replace(/\b(is|are|am)\b/gi,m=>m+', like').replace(/\s*~\s*$/,'')+' ~ (◕‿◕)';
 else if(kind==='cat')o=s.replace(/(?:th|r|l)/gi,m=>m.toLowerCase()==='th'?'d':'w').replace(/\s*~\s*$/,'')+' nya~ :3';
@@ -49,6 +49,7 @@ else if(kind==='vapor')o=s.replace(/[!-~]/g,c=>String.fromCharCode(c.charCodeAt(
 else if(kind==='echo')o=s.trim().split(/\s+/).map(w=>w+' '+w).join(' ');
 else if(kind==='binary')o=s.split('').map(c=>c.charCodeAt(0).toString(2).padStart(8,'0')).join(' ');
 else if(kind==='sparkle')o=s.trim().split(/\s+/).map(w=>'*'+w+'*').join(' ');
+else if(kind==='wrecked')o=shuffled(s.split('').map(c=>/\s/.test(c)?c:(Math.random()<.35?DFFL[Math.floor(Math.random()*26)]:c.toUpperCase())).join('')).split('').reverse().join('')+' [wrecked]';
 output.value=o;
 lastSource='';
 say((TOY_LABELS[kind]||kind)+' applied');}
